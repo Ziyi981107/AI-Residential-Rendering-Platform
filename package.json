@@ -1,0 +1,16 @@
+{
+  "name": "ai-residential-rendering-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Stage 0 platform shell for residential AI rendering",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

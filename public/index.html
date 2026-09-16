@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Residential Render Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar"><div><p class="eyebrow">AI RESIDENTIAL RENDERING</p><h1>Render Studio</h1></div><span class="stage-badge">Stage 0 · Platform Shell</span></header>
+      <section class="hero"><p class="eyebrow">FROM REFERENCE TO ATMOSPHERE</p><h2>Give your residential concept<br /><em>a believable point of view.</em></h2><p class="lede">Upload the structure and style references. We’ll keep the geometry grounded while exploring a polished architectural visualization.</p></section>
+      <form id="render-form" class="workspace">
+        <div class="reference-grid">
+          <label class="dropzone" for="structure"><span class="step">01</span><span class="label">Structure reference</span><span class="hint">Mass, camera, and composition</span><input id="structure" name="structure_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Structure reference preview" /></label>
+          <label class="dropzone" for="style"><span class="step">02</span><span class="label">Style reference</span><span class="hint">Material, light, and character</span><input id="style" name="style_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Style reference preview" /></label>
+        </div>
+        <label class="instruction"><span class="label">Additional requirements <span>optional</span></span><textarea name="user_instruction" maxlength="4000" placeholder="e.g. Warm evening light, pale limestone, planted courtyard..." rows="3"></textarea></label>
+        <div class="form-footer"><p>Original references remain attached to every task.</p><button id="generate" type="submit">Generate render <span>↗</span></button></div>
+      </form>
+      <section id="active" class="task-card hidden" aria-live="polite"></section>
+      <section class="history"><div class="section-heading"><div><p class="eyebrow">ARCHIVE</p><h3>Recent tasks</h3></div><button id="refresh" class="quiet" type="button">Refresh ↻</button></div><div id="history-list" class="history-list"><p class="empty">No renders yet. Your next study will appear here.</p></div></section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
