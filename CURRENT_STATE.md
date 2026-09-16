@@ -10,7 +10,7 @@ Stage 0 — Platform Shell, version 0.1.0.
 
 ## Current branch
 
-`dev/v0.1`.
+`dev/v0.1` (tracking `origin/dev/v0.1`).
 
 ## Stage 0 implementation status
 
@@ -36,7 +36,13 @@ Not run in this environment; no API key or non-sensitive reference images were s
 
 `14f8c19` — `Implement Stage 0 platform shell`.
 
-The verification-evidence follow-up commit is recorded in Git after this implementation checkpoint.
+The verification-evidence commits are on top of this implementation checkpoint; the final pushed branch tip is reported in the final Git verification below.
+
+## Git / push status
+
+Remote: `https://github.com/Ziyi981107/AI-Residential-Rendering-Platform.git` (`origin`).
+
+`main` was pushed unchanged and remains the initialization-only technical stable line; Stage 0 was not merged into it. `dev/v0.1` was pushed normally with upstream tracking and contains the Stage 0 implementation plus verification reports. No force push, merge, PR, tag, or release was performed.
 
 ## Next authority
 

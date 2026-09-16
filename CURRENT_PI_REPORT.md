@@ -58,9 +58,15 @@ None identified.
 
 ## 13. Git
 
-Branch: `dev/v0.1`.
+Branch: `dev/v0.1` (tracking `origin/dev/v0.1`).
 
-Stable implementation commit: `14f8c19` (`Implement Stage 0 platform shell`). No remote is configured, so push was not run. The required branch remains local and ready for AIPM review.
+Remote URL: `https://github.com/Ziyi981107/AI-Residential-Rendering-Platform.git`.
+
+Remote `main`: pushed successfully at `ceffe8214232fb4234ee3971030240df2a6be522` (`Initialize repository`); it remains unchanged and does not contain Stage 0.
+
+Remote `dev/v0.1`: pushed successfully without force at the pre-report-update checkpoint `45d72756958b4e8588e03e13ceb3bd01e05cc3d2`; this report update is pushed as a normal follow-up commit.
+
+Stable implementation commit: `14f8c19` (`Implement Stage 0 platform shell`). No merge, PR, tag, release, or history rewrite was performed.
 
 ## 14. Review Request
 
