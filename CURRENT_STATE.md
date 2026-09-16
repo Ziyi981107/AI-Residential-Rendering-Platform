@@ -26,7 +26,7 @@ Real API smoke test and manual browser verification require a running server and
 
 ## Tests
 
-`npm.cmd test` passed: 8 tests, 0 failures. The mock HTTP integration passed upload → create → generate → query → download → history → regenerate.
+`npm.cmd test` passed: 8 tests, 0 failures. `npm.cmd run smoke` passed against the local mock server: upload → create → generate → query → output.
 
 ## Provider smoke test status
 

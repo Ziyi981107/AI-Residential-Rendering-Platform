@@ -38,7 +38,7 @@ Coverage includes prompt role/version semantics, task transitions, storage isola
 
 Result: `npm.cmd test` — 8 passed, 0 failed.
 
-Mock HTTP integration result: passed upload → create task → generation → task query → output download → history query → regenerate.
+Mock HTTP integration result: passed upload → create task → generation → task query → output download → history query → regenerate. The committed `npm.cmd run smoke` command also passed against the local mock server (task reached `SUCCEEDED` and output URL was returned).
 
 ## 9. Real API Smoke Test
 
