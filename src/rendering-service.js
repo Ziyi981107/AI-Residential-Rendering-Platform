@@ -52,7 +52,7 @@ export class RenderingService {
       for (let index = 0; index < result.generated_images.length; index += 1) outputs.push(await this.storage.saveOutput(task.id, result.generated_images[index], index + 1));
       if (!outputs.length) throw new AppError('PROVIDER_EMPTY_OUTPUT', 'The image provider returned no image.', 502);
       const current = this.repository.get(task.id);
-      const updated = this.repository.update(task.id, { output_images: outputs, provider: result.provider, provider_model: result.provider_model, status: 'SUCCEEDED', error_code: null, error_message: null });
+      const updated = this.repository.transition(task.id, 'SUCCEEDED', { output_images: outputs, provider: result.provider, provider_model: result.provider_model, error_code: null, error_message: null });
       await this.logger.transition(current, 'GENERATING', 'SUCCEEDED');
       await this.logger.outcome({ task_id: task.id, prompt_version: updated.prompt_version, provider: updated.provider, provider_model: updated.provider_model, latency: Date.now() - started, request_outcome: 'success', error_category: null });
     } catch (error) {

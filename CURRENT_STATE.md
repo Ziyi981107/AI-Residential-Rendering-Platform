@@ -6,7 +6,7 @@ AI Residential Rendering Platform.
 
 ## Current version/stage
 
-Stage 0 — Platform Shell, version 0.1.0.
+Stage 0 — Platform Shell, version 0.1.0; narrow corrective pass complete, awaiting AIPM Re-Review.
 
 ## Current branch
 
@@ -14,7 +14,7 @@ Stage 0 — Platform Shell, version 0.1.0.
 
 ## Stage 0 implementation status
 
-Implemented locally and awaiting AIPM real-source review; external-provider and file-chooser checks remain pending.
+Implemented with the requested narrow corrective pass and awaiting AIPM Re-Review; real external-provider smoke remains pending.
 
 ## Completed capabilities
 
@@ -22,27 +22,27 @@ Frontend shell, backend API, SQLite task persistence, task-isolated local input/
 
 ## Known limitations
 
-Real API smoke test and manual browser verification require a running server and provider credentials/references; they are recorded in `CURRENT_PI_REPORT.md` with their actual status. No ComfyUI, evaluator, ranking, retry workflow, auth, or multi-provider UI is included.
+Real API smoke test requires provider credentials and non-sensitive references; its status is recorded in `Review/CURRENT_CODEX_REPORT.md`. No ComfyUI, evaluator, ranking, retry workflow, auth, or multi-provider UI is included.
 
 ## Tests
 
-`npm.cmd test` passed: 8 tests, 0 failures. `npm.cmd run smoke` passed against the local mock server: upload → create → generate → query → output.
+`npm.cmd test` passed: 10 tests, 0 failures. `npm.cmd run smoke` passed against the local mock server: upload → create → generate → query → output; task reached `SUCCEEDED`.
 
 ## Provider smoke test status
 
-Not run in this environment; no API key or non-sensitive reference images were supplied. The mock smoke path is available and passed.
+Not run in this environment; no API key or non-sensitive reference images were supplied. The mock smoke path passed.
 
 ## Latest stable commit
 
 `14f8c19` — `Implement Stage 0 platform shell`.
 
-The verification-evidence commits are on top of this implementation checkpoint; the final pushed branch tip is reported in the final Git verification below.
+The corrective follow-up commit will be the next normal commit on top of this implementation checkpoint.
 
 ## Git / push status
 
 Remote: `https://github.com/Ziyi981107/AI-Residential-Rendering-Platform.git` (`origin`).
 
-`main` was pushed unchanged and remains the initialization-only technical stable line; Stage 0 was not merged into it. `dev/v0.1` was pushed normally with upstream tracking and contains the Stage 0 implementation plus verification reports. No force push, merge, PR, tag, or release was performed.
+`main` remains the initialization-only technical stable line; Stage 0 was not merged into it. The corrective pass will be pushed normally to `dev/v0.1` with upstream tracking. Local future-commit identity is `Ziyi981107 / Ziyi981107@users.noreply.github.com`. No force push, merge, PR, tag, or release was performed.
 
 ## Next authority
 
