@@ -34,7 +34,9 @@ Not run in this environment; no API key or non-sensitive reference images were s
 
 ## Latest stable commit
 
-Recorded after the Stage 0 checkpoint commit.
+`14f8c19` — `Implement Stage 0 platform shell`.
+
+The verification-evidence follow-up commit is recorded in Git after this implementation checkpoint.
 
 ## Next authority
 

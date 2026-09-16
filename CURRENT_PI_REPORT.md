@@ -60,7 +60,7 @@ None identified.
 
 Branch: `dev/v0.1`.
 
-Stable commit is recorded after the checkpoint operation. No remote is configured, so push status will be explicitly reported as not run.
+Stable implementation commit: `14f8c19` (`Implement Stage 0 platform shell`). No remote is configured, so push was not run. The required branch remains local and ready for AIPM review.
 
 ## 14. Review Request
 
