@@ -6,7 +6,7 @@ AI Residential Rendering Platform.
 
 ## Current version/stage
 
-Stage 0 — Platform Shell, version 0.1.0; narrow corrective pass complete, awaiting AIPM Re-Review.
+Stage 0 — Platform Shell, version 0.1.0; narrow corrective pass complete locally, awaiting successful push and AIPM Re-Review.
 
 ## Current branch
 
@@ -36,13 +36,13 @@ Not run in this environment; no API key or non-sensitive reference images were s
 
 `14f8c19` — `Implement Stage 0 platform shell`.
 
-The corrective follow-up commit will be the next normal commit on top of this implementation checkpoint.
+Corrective follow-up commit: local `fcefc0e7fa487175d39ad3e4c5f29cb97da958ef`; it is not yet on the remote because GitHub reset all three normal push attempts.
 
 ## Git / push status
 
 Remote: `https://github.com/Ziyi981107/AI-Residential-Rendering-Platform.git` (`origin`).
 
-`main` remains the initialization-only technical stable line; Stage 0 was not merged into it. The corrective pass will be pushed normally to `dev/v0.1` with upstream tracking. Local future-commit identity is `Ziyi981107 / Ziyi981107@users.noreply.github.com`. No force push, merge, PR, tag, or release was performed.
+`main` remains the initialization-only technical stable line; Stage 0 was not merged into it. `dev/v0.1` is locally ahead of `origin/dev/v0.1` by the corrective commit; three normal push attempts were reset by the GitHub connection. Local future-commit identity is `Ziyi981107 / Ziyi981107@users.noreply.github.com`. No force push, merge, PR, tag, or release was performed.
 
 ## Next authority
 

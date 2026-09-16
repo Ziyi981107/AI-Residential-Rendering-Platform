@@ -32,7 +32,7 @@ Real API smoke remains intentionally unrun unless credentials and non-sensitive 
 
 Branch: `dev/v0.1`.
 
-The normal corrective follow-up commit and push will be recorded after this report update. Local repository identity for future commits: `Ziyi981107` / `Ziyi981107@users.noreply.github.com`. The previous pushed history is unchanged; no amend, history rewrite, or force push is permitted.
+Normal corrective follow-up commit: local `fcefc0e7fa487175d39ad3e4c5f29cb97da958ef`, authored and committed as `Ziyi981107` / `Ziyi981107@users.noreply.github.com`. Three ordinary push attempts were made; each failed with `Recv failure: Connection was reset`. Remote `origin/dev/v0.1` therefore remains at `e61ca9c19c49f5af8a37791937a4bec5ad682625`, while local `dev/v0.1` is ahead by the corrective commit and this report-status follow-up. The previous pushed history is unchanged; no amend, history rewrite, or force push was used.
 
 ## Review request
 
