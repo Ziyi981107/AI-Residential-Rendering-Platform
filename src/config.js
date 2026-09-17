@@ -22,6 +22,7 @@ export function loadConfig(overrides = {}, environment = process.env) {
     databasePath: path.resolve(root, overrides.databasePath ?? environment.DATABASE_PATH ?? path.join(dataPath, 'rendering.sqlite')),
     providerName: overrides.providerName ?? environment.IMAGE_PROVIDER ?? 'openai',
     providerModel: overrides.providerModel ?? environment.IMAGE_PROVIDER_MODEL ?? 'gpt-image-2.5-sunburst',
+    demoOutputPath: path.resolve(root, overrides.demoOutputPath ?? environment.DEMO_OUTPUT_PATH ?? './demo-assets/demo-residential.svg'),
     apiKey: overrides.apiKey ?? environment.OPENAI_API_KEY ?? environment.API_KEY ?? '',
     openAiBaseUrl: overrides.openAiBaseUrl ?? environment.OPENAI_BASE_URL ?? 'https://api.openai.com/v1',
     maxUploadBytes: overrides.maxUploadBytes ?? integerEnv('MAX_UPLOAD_BYTES', 10 * 1024 * 1024),

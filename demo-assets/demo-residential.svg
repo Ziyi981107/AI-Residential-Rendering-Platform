@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title description">
+  <title id="title">Contemporary residential demo rendering</title>
+  <desc id="description">A non-sensitive illustrative residential rendering for offline product demonstrations.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8d8e7"/><stop offset="1" stop-color="#f1d4ad"/></linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3eee5"/><stop offset="1" stop-color="#c6b9a7"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#426979"/><stop offset="1" stop-color="#19333e"/></linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#sky)"/>
+  <circle cx="940" cy="150" r="72" fill="#fff1c2" opacity=".8"/>
+  <path d="M0 540 200 425l180 80 205-120 240 115 160-80 215 120v220H0Z" fill="#82947d"/>
+  <path d="M0 650h1200v110H0Z" fill="#384a43"/>
+  <path d="M140 650 500 540l390 110Z" fill="#c8b79b"/>
+  <path d="M264 510V304l340-128 336 128v206Z" fill="url(#wall)"/>
+  <path d="m220 322 386-161 390 161-54 30-336-130-332 130Z" fill="#4a514a"/>
+  <path d="M300 353h222v157H300Z" fill="url(#glass)"/>
+  <path d="M552 342h288v168H552Z" fill="url(#glass)"/>
+  <path d="M300 353h222M552 342h288M411 353v157M696 342v168" stroke="#dbe5df" stroke-width="8" opacity=".65"/>
+  <path d="M264 510h676" stroke="#665f52" stroke-width="12"/>
+  <path d="M676 510v92h126v-92" fill="#b79e7d"/>
+  <path d="M720 548h38v54h-38Z" fill="#35434a"/>
+  <path d="M150 650c45-96 84-127 128-138-12 58-3 98 35 138ZM950 650c22-86 62-120 115-138-4 59 15 105 55 138Z" fill="#536d54"/>
+  <path d="M90 650c38-49 74-69 109-75-7 31-1 57 18 75ZM1030 650c34-46 72-61 113-68-8 31-1 52 16 68Z" fill="#75946b"/>
+  <text x="600" y="710" fill="#e9dfca" font-family="Arial, sans-serif" font-size="18" letter-spacing="4" text-anchor="middle">OFFLINE DEMO VISUAL</text>
+</svg>

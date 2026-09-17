@@ -5,7 +5,7 @@ import { loadConfig } from './config.js';
 import { TaskRepository } from './db.js';
 import { LocalStorage } from './storage.js';
 import { PromptEngine } from './prompt-engine.js';
-import { OpenAIImageProvider, MockImageProvider } from './provider.js';
+import { DemoImageProvider, OpenAIImageProvider, MockImageProvider } from './provider.js';
 import { RenderingService } from './rendering-service.js';
 import { createLogger } from './logger.js';
 import { AppError, publicError } from './errors.js';
@@ -15,7 +15,11 @@ const config = loadConfig();
 const repository = new TaskRepository(config.databasePath);
 const storage = new LocalStorage(config.dataPath);
 const logger = createLogger(config.dataPath);
-const provider = config.providerName === 'mock' ? new MockImageProvider({ model: config.providerModel }) : new OpenAIImageProvider({ apiKey: config.apiKey, model: config.providerModel, baseUrl: config.openAiBaseUrl, timeoutMs: config.providerTimeoutMs });
+const provider = config.providerName === 'mock'
+  ? new MockImageProvider({ model: config.providerModel })
+  : config.providerName === 'demo'
+    ? new DemoImageProvider({ outputPath: config.demoOutputPath, model: config.providerModel })
+    : new OpenAIImageProvider({ apiKey: config.apiKey, model: config.providerModel, baseUrl: config.openAiBaseUrl, timeoutMs: config.providerTimeoutMs });
 const service = new RenderingService({ repository, storage, promptEngine: new PromptEngine(), provider, config, logger });
 const publicRoot = path.resolve('public');
 
@@ -30,7 +34,7 @@ const server = http.createServer(async (request, response) => {
 
 async function route(request, response) {
   const url = new URL(request.url, `http://${request.headers.host ?? 'localhost'}`);
-  if (request.method === 'GET' && url.pathname === '/api/health') return json(response, 200, { ok: true });
+  if (request.method === 'GET' && url.pathname === '/api/health') return json(response, 200, { ok: true, provider: config.providerName, demo_mode: config.providerName === 'demo' });
   if (url.pathname === '/api/render-tasks' && request.method === 'POST') return createTask(request, response);
   if (url.pathname === '/api/render-tasks' && request.method === 'GET') return json(response, 200, { tasks: repository.list().map(publicTask) });
   const taskMatch = /^\/api\/render-tasks\/([^/]+)$/.exec(url.pathname);

@@ -10,7 +10,7 @@ import { LocalStorage } from '../src/storage.js';
 import { PromptEngine } from '../src/prompt-engine.js';
 import { validateImage, validateRenderInput } from '../src/validation.js';
 import { RenderingService } from '../src/rendering-service.js';
-import { OpenAIImageProvider } from '../src/provider.js';
+import { DemoImageProvider, OpenAIImageProvider } from '../src/provider.js';
 import { loadConfig } from '../src/config.js';
 
 const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64');
@@ -99,6 +99,24 @@ test('OpenAI provider maps image response into provider-neutral result', async (
   assert.deepEqual(result.generated_images[0].data, png);
 });
 
+test('DemoImageProvider returns the configured local image', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rendering-demo-provider-'));
+  const demoPath = path.join(dir, 'demo.svg');
+  const demoImage = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="green"/></svg>');
+  await fs.writeFile(demoPath, demoImage);
+  const result = await new DemoImageProvider({ outputPath: demoPath, model: 'demo-model' }).generate({});
+  assert.deepEqual(result.generated_images[0].data, demoImage);
+  assert.equal(result.generated_images[0].mime, 'image/svg+xml');
+  assert.equal(result.provider, 'demo');
+  assert.equal(result.provider_model, 'demo-model');
+  assert.equal(result.provider_metadata.mode, 'presentation-demo');
+});
+
+test('DemoImageProvider safely fails when the configured image is missing', async () => {
+  const provider = new DemoImageProvider({ outputPath: path.join(os.tmpdir(), 'missing-demo-image.svg') });
+  await assert.rejects(() => provider.generate({}), (error) => error.code === 'DEMO_IMAGE_NOT_FOUND' && error.status === 503 && error.message.includes('not available'));
+});
+
 test('rendering service completes mock flow and records output', async () => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rendering-service-'));
   const repo = new TrackingRepository();
@@ -115,6 +133,26 @@ test('rendering service completes mock flow and records output', async () => {
   assert.equal(successTransition.details.output_images.length, 1);
   assert.equal(successTransition.details.provider, 'mock');
   assert.equal(successTransition.details.provider_model, 'mock');
+  repo.close();
+});
+
+test('rendering service completes demo flow and persists the configured image', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rendering-demo-service-'));
+  const demoPath = path.join(dir, 'demo.svg');
+  const demoImage = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="green"/></svg>');
+  await fs.writeFile(demoPath, demoImage);
+  const repo = new TaskRepository();
+  const storage = new LocalStorage(dir);
+  const provider = new DemoImageProvider({ outputPath: demoPath, model: 'demo-model' });
+  const service = new RenderingService({ repository: repo, storage, promptEngine: new PromptEngine(), config: { dataPath: dir, maxUploadBytes: 10000, providerName: 'demo', providerModel: 'demo-model' }, logger: silentLogger, provider });
+  const task = await service.createTask(input());
+  await new Promise(resolve => setTimeout(resolve, 40));
+  const completed = repo.get(task.id);
+  assert.equal(completed.status, 'SUCCEEDED');
+  assert.equal(completed.provider, 'demo');
+  assert.equal(completed.provider_model, 'demo-model');
+  assert.equal(completed.output_images[0].mime, 'image/svg+xml');
+  assert.deepEqual(await storage.readAsset(completed.output_images[0]), demoImage);
   repo.close();
 });
 

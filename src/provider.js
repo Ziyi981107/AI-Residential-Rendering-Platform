@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { AppError } from './errors.js';
 
 export class OpenAIImageProvider {
@@ -51,6 +52,30 @@ export class OpenAIImageProvider {
   }
 }
 
+export class DemoImageProvider {
+  constructor({ outputPath, model = 'demo-local' }) {
+    this.outputPath = outputPath;
+    this.model = model;
+  }
+
+  async generate() {
+    let data;
+    try {
+      data = await fs.readFile(this.outputPath);
+    } catch (error) {
+      const code = error.code === 'ENOENT' ? 'DEMO_IMAGE_NOT_FOUND' : 'DEMO_IMAGE_READ_FAILED';
+      throw new AppError(code, 'The demo output image is not available on this server.', 503, error);
+    }
+    if (!data.length) throw new AppError('DEMO_IMAGE_EMPTY', 'The demo output image is empty.', 503);
+    return {
+      generated_images: [{ data, mime: mimeForPath(this.outputPath) }],
+      provider: 'demo',
+      provider_model: this.model,
+      provider_metadata: { mode: 'presentation-demo' }
+    };
+  }
+}
+
 export class MockImageProvider {
   constructor({ model = 'mock' } = {}) { this.model = model; }
   async generate() {
@@ -58,4 +83,9 @@ export class MockImageProvider {
     const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64');
     return { generated_images: [{ data: png, mime: 'image/png' }], provider: 'mock', provider_model: this.model, provider_metadata: { mode: 'local-test' } };
   }
+}
+
+function mimeForPath(filePath) {
+  const extension = path.extname(filePath).toLowerCase();
+  return ({ '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif', '.svg': 'image/svg+xml' })[extension] ?? 'application/octet-stream';
 }

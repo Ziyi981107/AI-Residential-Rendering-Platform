@@ -5,6 +5,13 @@ const historyList = document.querySelector('#history-list');
 let activeTaskId = null;
 let pollTimer = null;
 
+async function loadProviderMode() {
+  const response = await fetch('/api/health');
+  if (!response.ok) return;
+  const health = await response.json();
+  if (health.demo_mode) document.querySelector('#provider-mode').classList.remove('hidden');
+}
+
 for (const input of document.querySelectorAll('input[type=file]')) input.addEventListener('change', () => {
   const preview = input.closest('.dropzone').querySelector('.preview');
   const file = input.files[0];
@@ -16,6 +23,8 @@ form.addEventListener('submit', async (event) => {
   generateButton.disabled = true;
   generateButton.textContent = 'Creating task…';
   try {
+    if (!form.elements.structure_image.files[0]) return renderMessage('Add a structure reference image to continue.');
+    if (!form.elements.style_image.files[0]) return renderMessage('Add a style reference image to continue.');
     const response = await fetch('/api/render-tasks', { method: 'POST', body: new FormData(form) });
     const task = await response.json();
     if (!response.ok) throw new Error(task.error?.message ?? 'Could not create task.');
@@ -53,4 +62,5 @@ function renderMessage(message) { active.classList.remove('hidden'); active.inne
 function friendlyStatus(status) { return ({ CREATED: 'Queued', VALIDATING: 'Validating', GENERATING: 'Generating', SUCCEEDED: 'Success', FAILED: 'Failed' })[status] ?? status; }
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]); }
 
+loadProviderMode().catch(() => {});
 refreshHistory().catch(() => {});

@@ -1,5 +1,47 @@
 # CURRENT CODEX REPORT — Stage 0
 
+## Demo Readiness — 2026-09-17
+
+### Implementation
+
+- Added `DemoImageProvider` as a normal `generate(request)` adapter. It reads
+  the configuration-driven `DEMO_OUTPUT_PATH`, returns a standard generation
+  result, and safely reports missing/empty local output.
+- Added the non-sensitive illustrative fallback asset
+  `demo-assets/demo-residential.svg`.
+- Added provider selection for `openai`, `demo`, and `mock`; the existing
+  `OpenAIImageProvider` request/response path is unchanged.
+- Added the lightweight `Demo Mode` badge, shown only for the `demo` provider.
+- Added clear browser-side missing Structure/Style messages.
+- Added ignored paths for private demo/user/residential assets.
+- Added provider and end-to-end Demo regression tests.
+
+### Validation evidence
+
+- Automated tests: `npm.cmd test` — **13/13 PASS**.
+- Mock integration smoke: **PASS**; task
+  `edc0789a-afbc-45a3-84fb-73102894b754` reached `SUCCEEDED`.
+- Demo integration smoke: **PASS**; task
+  `caefacba-c8ec-4653-a284-52bf39f52d31` reached `SUCCEEDED`.
+- Demo browser flow: **PASS**. Chrome verified `Demo Mode`, two reference
+  uploads/previews, instruction, Generate, `Render ready`, output display,
+  download event, History after refresh, and Regenerate as a new successful
+  task (`e4e92729-f741-460f-9bee-8fd11f1898fa` →
+  `7cda74ed-9726-4509-b0a9-82c353c56b8a`). Missing Structure and missing Style
+  each displayed an understandable local error.
+- Real OpenAI API smoke: **BLOCKED** by absent server-side credentials. No
+  real request was made; this is an external validation blocker, not a Demo
+  provider failure.
+- Production source behavior outside the Demo adapter/config/UI polish was
+  not changed. Residential Stage 1, ComfyUI, evaluator, scoring, ranking,
+  Agent, and prompt optimization were not started.
+
+### Handoff
+
+This round is **DEMO READINESS: PASS CANDIDATE — local offline fallback
+validated; real OpenAI smoke remains pending credential configuration**. It is
+not `Stage 0 CLOSED`. Local commit SHA and Git status are recorded at handoff.
+
 ## Stage 0 Final Validation — 2026-09-17
 
 This round was limited to Stage 0 validation. Residential Stage 1 was not

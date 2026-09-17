@@ -47,5 +47,5 @@ export class LocalStorage {
 }
 
 function extensionForMime(mime) {
-  return ({ 'image/png': '.png', 'image/jpeg': '.jpg', 'image/webp': '.webp', 'image/gif': '.gif' })[mime] ?? '.bin';
+  return ({ 'image/png': '.png', 'image/jpeg': '.jpg', 'image/webp': '.webp', 'image/gif': '.gif', 'image/svg+xml': '.svg' })[mime] ?? '.bin';
 }

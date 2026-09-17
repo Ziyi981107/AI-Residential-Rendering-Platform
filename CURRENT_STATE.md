@@ -1,5 +1,40 @@
 # CURRENT STATE
 
+## Demo Readiness — 2026-09-17
+
+The temporary priority is a stable, presentable Stage 0 demo. Residential Stage
+1 was not started.
+
+- Added configuration-driven `DemoImageProvider` with the existing
+  `ImageProvider.generate(request)` contract.
+- Provider roles are explicit: `openai` for real provider smoke,
+  `demo` for the offline presentation fallback, and `mock` for automated and
+  integration tests.
+- Demo output defaults to the non-sensitive illustrative asset at
+  `DEMO_OUTPUT_PATH=./demo-assets/demo-residential.svg`; private replacement
+  images belong under ignored local asset paths.
+- Added a lightweight `Demo Mode` badge. It is visible only when the active
+  provider is `demo`.
+
+### Validation
+
+- `npm.cmd test`: **13/13 PASS**.
+- Mock smoke: **PASS**; task `edc0789a-afbc-45a3-84fb-73102894b754` reached
+  `SUCCEEDED`.
+- Demo smoke: **PASS**; task `caefacba-c8ec-4653-a284-52bf39f52d31` reached
+  `SUCCEEDED`.
+- Real browser Demo flow: **PASS**; task
+  `e4e92729-f741-460f-9bee-8fd11f1898fa` rendered and displayed the local
+  result, download event completed, History survived refresh, and Regenerate
+  created task `7cda74ed-9726-4509-b0a9-82c353c56b8a`.
+- Browser validation also confirmed clear missing Structure and missing Style
+  messages.
+- Real OpenAI API: **BLOCKED** only because no server-side API credential is
+  configured in this environment; no secret was recorded.
+
+This is a Demo Readiness implementation checkpoint, not Stage 0 CLOSED and not
+Stage 1 authorization.
+
 ## Stage 0 Final Validation — 2026-09-17
 
 This is a Stage 0 Final Validation attempt only. Residential Stage 1 was not

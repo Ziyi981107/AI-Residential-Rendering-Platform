@@ -8,9 +8,9 @@
   </head>
   <body>
     <main class="shell">
-      <header class="topbar"><div><p class="eyebrow">AI RESIDENTIAL RENDERING</p><h1>Render Studio</h1></div><span class="stage-badge">Stage 0 · Platform Shell</span></header>
+      <header class="topbar"><div><p class="eyebrow">AI RESIDENTIAL RENDERING</p><h1>Render Studio</h1></div><div class="header-badges"><span id="provider-mode" class="provider-mode hidden">Demo Mode</span><span class="stage-badge">Stage 0 · Platform Shell</span></div></header>
       <section class="hero"><p class="eyebrow">FROM REFERENCE TO ATMOSPHERE</p><h2>Give your residential concept<br /><em>a believable point of view.</em></h2><p class="lede">Upload the structure and style references. We’ll keep the geometry grounded while exploring a polished architectural visualization.</p></section>
-      <form id="render-form" class="workspace">
+      <form id="render-form" class="workspace" novalidate>
         <div class="reference-grid">
           <label class="dropzone" for="structure"><span class="step">01</span><span class="label">Structure reference</span><span class="hint">Mass, camera, and composition</span><input id="structure" name="structure_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Structure reference preview" /></label>
           <label class="dropzone" for="style"><span class="step">02</span><span class="label">Style reference</span><span class="hint">Material, light, and character</span><input id="style" name="style_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Style reference preview" /></label>

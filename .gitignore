@@ -1,6 +1,14 @@
 node_modules/
 .env
 data/
+demo-assets/local/
+demo-assets/*.png
+demo-assets/*.jpg
+demo-assets/*.jpeg
+demo-assets/*.webp
+demo-assets/*.gif
+user-assets/
+residential-assets/
 *.log
 coverage/
 .DS_Store
