@@ -1,5 +1,26 @@
 # CURRENT STATE
 
+## Stage 0 Final Validation — 2026-09-17
+
+This is a Stage 0 Final Validation attempt only. Residential Stage 1 was not
+started.
+
+- Automated regression: `npm.cmd test` — **PASS, 10/10**.
+- Mock integration smoke: `npm.cmd run smoke` with `IMAGE_PROVIDER=mock` —
+  **PASS**; upload → create → generate → query → output completed and the task
+  reached `SUCCEEDED`.
+- Real OpenAI Image API smoke: **BLOCKED by external credentials**. The root
+  `.env` is absent and neither `OPENAI_API_KEY` nor `API_KEY` is configured in
+  the system environment. No secret was logged or committed.
+- Real browser flow: **NOT RUN** because the real-provider prerequisite is
+  blocked; no false success is claimed.
+- Production source changes: **none**. No provider adapter fix was needed.
+- No push, merge, PR, tag, release, force push, or history rewrite was done.
+
+Current validation disposition: **BLOCKED — external API credentials required**.
+Owner must provide a server-side API key and non-sensitive structure/style
+references before the real API and dependent browser validation can run.
+
 ## Current project
 
 AI Residential Rendering Platform.

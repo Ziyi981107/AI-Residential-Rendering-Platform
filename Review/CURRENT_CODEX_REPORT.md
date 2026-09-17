@@ -1,5 +1,38 @@
 # CURRENT CODEX REPORT — Stage 0
 
+## Stage 0 Final Validation — 2026-09-17
+
+This round was limited to Stage 0 validation. Residential Stage 1 was not
+started.
+
+### Results
+
+- Automated regression: `npm.cmd test` — **PASS, 10/10**.
+- Mock integration smoke: `npm.cmd run smoke` with `IMAGE_PROVIDER=mock` —
+  **PASS**; task `ec50e2cc-f033-40ff-9403-e735a6b5a1c2` reached `SUCCEEDED` and
+  returned the output asset URL.
+- Real OpenAI API smoke: **BLOCKED**. `.env` is not present and neither
+  `OPENAI_API_KEY` nor `API_KEY` is configured in the environment. No real API
+  request was attempted and no secret was recorded.
+- Real browser flow: **NOT RUN** because the real-provider prerequisite is an
+  external blocker. This is not reported as PASS.
+- Real API task id / prompt version / provider / latency / output download:
+  **not available because no real API task was created**.
+- Provider adapter code changes: **none**; no narrow corrective fix was
+  necessary.
+- Production source modified: **no**. Only this governance report and
+  `CURRENT_STATE.md` are changed in this round.
+
+### Blocker and handoff
+
+Provide a server-side OpenAI API key and non-sensitive structure/style
+references, then rerun the real API smoke and dependent browser flow. The
+current configuration remains configuration-driven with model
+`gpt-image-2.5-sunburst`; `.env` remains gitignored.
+
+This round is **BLOCKED — external API credentials required**. Therefore the
+state is not `Stage 0 Final Validation: PASS CANDIDATE`.
+
 ## Review status
 
 This file is the tracked Codex review/report location for the project. It records the current Stage 0 implementation baseline and the narrow corrective pass requested by AIPM.
