@@ -1,5 +1,32 @@
 # CURRENT CODEX REPORT — Stage 0
 
+## Narrow Frontend Chinese Localization Fix — 2026-09-17
+
+### Result
+
+- Converted all ordinary user-visible frontend copy to Chinese, including page
+  title, product name, upload labels/hints, requirement field, buttons,
+  loading/status/result/history text, Demo badge, alt text, and empty state.
+- Added a presentation-layer mapping for known backend error codes; unknown
+  errors use `操作失败，请稍后重试。`.
+- Preserved internal status enums (`CREATED`, `VALIDATING`, `GENERATING`,
+  `SUCCEEDED`, `FAILED`) and all core backend contracts.
+
+### Verification
+
+- `npm.cmd test`: **13/13 PASS**.
+- `node --check public/app.js`: **PASS**.
+- Chrome: **PASS** for Chinese page shell, Demo Mode (`演示模式`), both upload
+  previews, Generate (`开始生成`), Chinese generation/result status, download
+  (`下载图片`), Regenerate (`重新生成`), History (`历史记录`), and clear missing
+  Structure/Style messages.
+- Visible main-page text scan: no remaining English UI words.
+- Modified scope: `public/` plus this governance record and `CURRENT_STATE.md`;
+  no `src/` production logic changed.
+
+Stage 1, OpenAI API smoke, ComfyUI, evaluator, scoring, ranking, Agent, and
+release operations remain out of scope.
+
 ## Demo Readiness — 2026-09-17
 
 ### Implementation

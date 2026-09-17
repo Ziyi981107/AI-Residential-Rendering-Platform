@@ -1,25 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Residential Render Studio</title>
+    <title>AI 住宅渲染工作台</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="shell">
-      <header class="topbar"><div><p class="eyebrow">AI RESIDENTIAL RENDERING</p><h1>Render Studio</h1></div><div class="header-badges"><span id="provider-mode" class="provider-mode hidden">Demo Mode</span><span class="stage-badge">Stage 0 · Platform Shell</span></div></header>
-      <section class="hero"><p class="eyebrow">FROM REFERENCE TO ATMOSPHERE</p><h2>Give your residential concept<br /><em>a believable point of view.</em></h2><p class="lede">Upload the structure and style references. We’ll keep the geometry grounded while exploring a polished architectural visualization.</p></section>
+      <header class="topbar"><div><p class="eyebrow">AI 住宅渲染</p><h1>AI 住宅渲染工作台</h1></div><div class="header-badges"><span id="provider-mode" class="provider-mode hidden">演示模式</span><span class="stage-badge">内部演示版</span></div></header>
+      <section class="hero"><p class="eyebrow">从参考图到真实感</p><h2>让住宅方案<br /><em>拥有可信的视觉表达。</em></h2><p class="lede">上传结构参考图与风格参考图，我们会在保持建筑关系的基础上，探索更完整的建筑可视化效果。</p></section>
       <form id="render-form" class="workspace" novalidate>
         <div class="reference-grid">
-          <label class="dropzone" for="structure"><span class="step">01</span><span class="label">Structure reference</span><span class="hint">Mass, camera, and composition</span><input id="structure" name="structure_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Structure reference preview" /></label>
-          <label class="dropzone" for="style"><span class="step">02</span><span class="label">Style reference</span><span class="hint">Material, light, and character</span><input id="style" name="style_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="Style reference preview" /></label>
+          <label class="dropzone" for="structure"><span class="step">01</span><span class="label">结构参考图</span><span class="hint">用于确定建筑体量、位置、道路、视角与构图</span><input id="structure" name="structure_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="结构参考图预览" /></label>
+          <label class="dropzone" for="style"><span class="step">02</span><span class="label">风格参考图</span><span class="hint">用于参考材质、色彩、光影与整体表现风格</span><input id="style" name="style_image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" required /><img class="preview" alt="风格参考图预览" /></label>
         </div>
-        <label class="instruction"><span class="label">Additional requirements <span>optional</span></span><textarea name="user_instruction" maxlength="4000" placeholder="e.g. Warm evening light, pale limestone, planted courtyard..." rows="3"></textarea></label>
-        <div class="form-footer"><p>Original references remain attached to every task.</p><button id="generate" type="submit">Generate render <span>↗</span></button></div>
+        <label class="instruction"><span class="label">补充要求 <span>可选</span></span><textarea name="user_instruction" maxlength="4000" placeholder="例如：现代高品质住宅、落地窗、暖色夕阳氛围……" rows="3"></textarea></label>
+        <div class="form-footer"><p>原始参考图会随任务一并保留。</p><button id="generate" type="submit">开始生成 <span>↗</span></button></div>
       </form>
       <section id="active" class="task-card hidden" aria-live="polite"></section>
-      <section class="history"><div class="section-heading"><div><p class="eyebrow">ARCHIVE</p><h3>Recent tasks</h3></div><button id="refresh" class="quiet" type="button">Refresh ↻</button></div><div id="history-list" class="history-list"><p class="empty">No renders yet. Your next study will appear here.</p></div></section>
+      <section class="history"><div class="section-heading"><div><p class="eyebrow">历史记录</p><h3>历史记录</h3></div><button id="refresh" class="quiet" type="button">刷新 ↻</button></div><div id="history-list" class="history-list"><p class="empty">暂无生成记录</p></div></section>
     </main>
     <script src="/app.js" type="module"></script>
   </body>

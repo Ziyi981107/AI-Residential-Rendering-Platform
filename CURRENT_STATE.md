@@ -1,5 +1,22 @@
 # CURRENT STATE
 
+## Narrow Frontend Chinese Localization Fix — 2026-09-17
+
+The Demo-facing UI is now presented in natural Chinese for the management
+briefing. Internal task status enums and backend/API behavior remain unchanged.
+
+- Page language/title: `zh-CN` / `AI 住宅渲染工作台`.
+- User-visible labels, hints, loading/status text, result actions, history, empty
+  state, Demo badge, and known error messages are Chinese.
+- Chrome verification passed normal Demo generation, result display, native
+  download, History, Regenerate, and missing Structure/Style messages.
+- Visible main-page scan found no remaining English UI words.
+- No `src/` production logic, state machine, provider behavior, storage schema,
+  model config, PromptEngine, or Stage 1 work was changed.
+
+Automated tests remain **13/13 PASS**. This is a frontend localization
+follow-up only; Stage 1 was not started.
+
 ## Demo Readiness — 2026-09-17
 
 The temporary priority is a stable, presentable Stage 0 demo. Residential Stage
